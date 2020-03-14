@@ -24,5 +24,5 @@ openssl x509 -req -extfile ssl.cnf -extensions SAN -in keycloak.csr -CA ca.crt -
 
 kubectl create ns keycloak
 kubectl create secret tls tls-keys -n keycloak  --cert=./keycloak.crt --key=./keycloak.key
-kubectl apply -f keycloak.yaml -n keycloak
+kubectl apply -f resources/keycloak.yaml -n keycloak
 
