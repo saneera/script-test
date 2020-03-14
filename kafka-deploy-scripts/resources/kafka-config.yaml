@@ -1,0 +1,85 @@
+apiVersion: kafka.strimzi.io/v1alpha1
+kind: Kafka
+metadata:
+  name: $CLUSTER_NAME
+  labels:
+    app: $CLUSTER_NAME
+spec:
+  kafka:
+    replicas: $KAKFA_NODE_COUNT
+    version: $KAFKA_VERSION
+    listeners:
+      plain:
+        authentication:
+          type: oauth
+          validIssuerUri: https://$OAUTH_SERVER/auth/realms/internal
+          jwksEndpointUri: https://$OAUTH_SERVER/auth/realms/internal/protocol/openid-connect/certs
+          userNameClaim: preferred_username
+          tlsTrustedCertificates:
+            - secretName: $CA_TRUST
+              certificate: $CA_CERT
+      tls:
+        authentication:
+          type: oauth
+          validIssuerUri: https://$OAUTH_SERVER/auth/realms/internal
+          jwksEndpointUri: https://$OAUTH_SERVER/auth/realms/internal/protocol/openid-connect/certs
+          userNameClaim: preferred_username
+          tlsTrustedCertificates:
+            - secretName: $CA_TRUST
+              certificate: $CA_CERT
+      external:
+        type: loadbalancer
+        authentication:
+          type: oauth
+          validIssuerUri: https://$OAUTH_EXTERNAL_SERVER/auth/realms/external
+          jwksEndpointUri: https://$OAUTH_EXTERNAL_SERVER/auth/realms/external/protocol/openid-connect/certs
+          userNameClaim: preferred_username
+          tlsTrustedCertificates:
+            - secretName: $CA_EXTERNAL_TRUST
+              certificate: $CA_EXTERNAL_CERT
+          disableTlsHostnameVerification: true
+    authorization:
+      type: simple
+        livenessProbe:
+    initialDelaySeconds: $KAFKA_HEALTHCHECK_DELAY
+      timeoutSeconds: $KAFKA_HEALTHCHECK_TIMEOUT
+    readinessProbe:
+      initialDelaySeconds: $KAFKA_HEALTHCHECK_DELAY
+      timeoutSeconds: $KAFKA_HEALTHCHECK_TIMEOUT
+    config:
+      offsets.topic.replication.factor: 3
+      transaction.state.log.replication.factor: 3
+      transaction.state.log.min.isr: 2
+    storage:
+      type: ephemeral
+    logging:
+      type: inline
+      loggers:
+        log4j.logger.kafka: INFO
+        log4j.logger.org.apache.kafka: INFO
+        kafka.root.logger.level: INFO
+        log4j.logger.io.strimzi.kafka.oauth: DEBUG
+        log4j.logger.kafka.authorizer.logger: INFO
+        log4j.logger.kafka.network.Acceptor: INFO
+  zookeeper:
+    replicas: $ZOOKEEPER_NODE_COUNT
+    storage:
+      type: ephemeral
+    livenessProbe:
+      initialDelaySeconds: $ZOOKEEPER_HEALTHCHECK_DELAY
+      timeoutSeconds: $ZOOKEEPER_HEALTHCHECK_TIMEOUT
+    readinessProbe:
+      initialDelaySeconds: $ZOOKEEPER_HEALTHCHECK_DELAY
+      timeoutSeconds: $ZOOKEEPER_HEALTHCHECK_TIMEOUT
+  entityOperator:
+    topicOperator:
+      logging:
+        loggers:
+          rootLogger.level: INFO
+        type: inline
+    userOperator:
+      logging:
+        loggers:
+          rootLogger.level: INFO
+        type: inline
+
