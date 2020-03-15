@@ -69,40 +69,10 @@
       "serviceAccountClientId": "kafka-consumer"
     },
     {
-      "username": "service-account-kafka-connect",
-      "enabled": true,
-      "email": "service-account-kafka-connect@placeholder.org",
-      "serviceAccountClientId": "kafka-connect"
-    },
-    {
       "username": "service-account-kafka-bridge",
       "enabled": true,
       "email": "service-account-kafka-bridge@placeholder.org",
       "serviceAccountClientId": "kafka-bridge"
-    },
-    {
-      "username": "service-account-kafka-mirror-maker",
-      "enabled": true,
-      "email": "service-account-kafka-mirror-maker@placeholder.org",
-      "serviceAccountClientId": "kafka-mirror-maker"
-    },
-    {
-      "username": "service-account-hello-world-producer",
-      "enabled": true,
-      "email": "service-account-hello-world-producer@placeholder.org",
-      "serviceAccountClientId": "hello-world-producer"
-    },
-    {
-      "username": "service-account-hello-world-consumer",
-      "enabled": true,
-      "email": "service-account-hello-world-consumer@placeholder.org",
-      "serviceAccountClientId": "hello-world-consumer"
-    },
-    {
-      "username": "service-account-hello-world-streams",
-      "enabled": true,
-      "email": "service-account-hello-world-streams@placeholder.org",
-      "serviceAccountClientId": "hello-world-streams"
     }
   ],
   "roles": {
@@ -235,23 +205,6 @@
       "enabled": true,
       "clientAuthenticatorType": "client-secret",
       "secret": "kafka-bridge-secret",
-      "publicClient": false,
-      "bearerOnly": false,
-      "standardFlowEnabled": false,
-      "implicitFlowEnabled": false,
-      "directAccessGrantsEnabled": true,
-      "serviceAccountsEnabled": true,
-      "consentRequired" : false,
-      "fullScopeAllowed" : false,
-      "attributes": {
-        "access.token.lifespan": "32140800"
-      }
-    },
-    {
-      "clientId": "kafka-mirror-maker",
-      "enabled": true,
-      "clientAuthenticatorType": "client-secret",
-      "secret": "kafka-mirror-maker-secret",
       "publicClient": false,
       "bearerOnly": false,
       "standardFlowEnabled": false,

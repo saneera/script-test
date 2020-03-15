@@ -26,3 +26,4 @@ kubectl create ns keycloak
 kubectl create secret tls tls-keys -n keycloak  --cert=./keycloak.crt --key=./keycloak.key
 kubectl apply -f resources/keycloak.yaml -n keycloak
 
+oc create route edge --service=keycloak --cert=tls.crt --key=tls.key --ca-cert=ca.crt

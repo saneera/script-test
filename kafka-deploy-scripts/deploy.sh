@@ -16,7 +16,7 @@ TOPIC_NAME=$(getProperty "topic.name")
 echo "NAMESPACE="$NAMESPACE
 echo "CLUSTER="$CLUSTER
 
-kubectl namespace $NAMESPACE 2> /dev/null || kubectl create namespace $NAMESPACE
+oc project $NAMESPACE 2> /dev/null || oc new-project $NAMESPACE
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
