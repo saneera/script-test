@@ -55,4 +55,8 @@ echo "Current directory" $DIR
 
 $DIR/01-deploy-kafka.sh
 $DIR/02-create.default-topic.sh
+$DIR/03-create.default-user.sh
+$DIR/04-deploy-kafka-bridge.sh
+$DIR/05-deploy-kafka-connect.sh
+
 

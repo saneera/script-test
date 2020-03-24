@@ -11,10 +11,11 @@ function getProperty {
 NAMESPACE=$(getProperty "namespace")
 CLUSTER=$(getProperty "cluster.name")
 TOPIC_NAME=$(getProperty "topic.name")
+DEFAULT_USER=$(getProperty "default.user")
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 # create Kafka topics
 eval "echo \"$(cat $DIR/kafka/kafka-user.yaml)\""  | oc apply -f - -n $NAMESPACE
-rm $DIR/kafka/$CLUSTER-kafka-topics.yaml
+
 
