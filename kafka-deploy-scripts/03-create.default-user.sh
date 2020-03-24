@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROPERTY_FILE=config.properties
+PROPERTY_FILE=config-$INSTALLATION_TYPE.properties
 
 function getProperty {
    PROP_KEY=$1
@@ -8,9 +8,8 @@ function getProperty {
    echo $PROP_VALUE
 }
 
-NAMESPACE=$(getProperty "namespace")
-CLUSTER=$(getProperty "cluster.name")
-DEFAULT_USER=$(getProperty "default.user")
+# NAMESPACE=$(getProperty "namespace")
+# CLUSTER_NAME=$(getProperty "cluster.name")
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 

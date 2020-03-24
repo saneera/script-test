@@ -2,7 +2,7 @@
 
 set +x
 
-PROPERTY_FILE=config.properties
+PROPERTY_FILE=config-$INSTALLATION_TYPE.properties
 
 function getProperty {
    PROP_KEY=$1
@@ -10,8 +10,8 @@ function getProperty {
    echo $PROP_VALUE
 }
 
-NAMESPACE=$(getProperty "namespace")
-CLUSTER_NAME=$(getProperty "cluster.name")
+# NAMESPACE=$(getProperty "namespace")
+# CLUSTER_NAME=$(getProperty "cluster.name")
 BOOTSTRAP_SERVER="${CLUSTER_NAME}-kafka-bootstrap:9093"
 SECRET_NAME="${CLUSTER_NAME}-cluster-ca-cert"
 

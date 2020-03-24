@@ -1,7 +1,32 @@
 #!/bin/bash
 set +x
 
-PROPERTY_FILE=config.properties
+export INSTALLATION_TYPE=${INSTALLATION_TYPE:="keycloak"}
+export NAMESPACE=${NAMESPACE:="kafka-test"}
+export CLUSTER_NAME=${CLUSTER_NAME:="my-cluster"}
+
+
+echo "Installation type ?"
+echo "  Select which installation type do you want to install ( option 1: keycloak, option 2: adfs)"
+select yn in "1" "2"; do
+case $yn in
+1) export INSTALLATION_TYPE=keycloak; break;;
+2) export INSTALLATION_TYPE=adfs; break;;
+*) echo "Please select 1 or 2.";;
+esac
+done
+
+read -rp "Namespace to use: ($NAMESPACE): " choice;
+if [ "$choice" != "" ] ; then
+		export NAMESPACE="$choice";
+fi
+
+read -rp "Cluster name to use: ($CLUSTER_NAME): " choice;
+if [ "$choice" != "" ] ; then
+		export CLUSTER_NAME="$choice";
+fi
+
+PROPERTY_FILE=config-$INSTALLATION_TYPE.properties
 
 function getProperty {
    PROP_KEY=$1
@@ -9,8 +34,8 @@ function getProperty {
    echo $PROP_VALUE
 }
 
-NAMESPACE=$(getProperty "namespace")
-CLUSTER_NAME=$(getProperty "cluster.name")
+# NAMESPACE=$(getProperty "namespace")
+# CLUSTER_NAME=$(getProperty "cluster.name")
 
 ZOOKEEPER_NODE_COUNT=$(getProperty "zookeeper.replicas")
 ZOOKEEPER_HEALTHCHECK_DELAY=$(getProperty "zookeeper.healthcheck.delay")

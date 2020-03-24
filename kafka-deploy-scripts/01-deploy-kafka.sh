@@ -2,7 +2,7 @@
 
 set +x
 
-PROPERTY_FILE=config.properties
+PROPERTY_FILE=config-$INSTALLATION_TYPE.properties
 
 function getProperty {
    PROP_KEY=$1
@@ -10,8 +10,8 @@ function getProperty {
    echo $PROP_VALUE
 }
 
-NAMESPACE=$(getProperty "namespace")
-CLUSTER_NAME=$(getProperty "cluster.name")
+# NAMESPACE=$(getProperty "namespace")
+# CLUSTER_NAME=$(getProperty "cluster.name")
 
 ZOOKEEPER_NODE_COUNT=$(getProperty "zookeeper.replicas")
 ZOOKEEPER_HEALTHCHECK_DELAY=$(getProperty "zookeeper.healthcheck.delay")

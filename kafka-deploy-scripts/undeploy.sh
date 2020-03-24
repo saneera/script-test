@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROPERTY_FILE=config.properties
+PROPERTY_FILE=config-keycloak.properties
 
 function getProperty {
    PROP_KEY=$1
