@@ -35,7 +35,6 @@ KAFKA_CLIENT_SECRET=$(getProperty "kafka.client.secret")
 KAFKA_SECRET=$(getProperty "kafka.secret")
 CA_TRUST=$(getProperty "ca.truststore")
 CA_CERT=$(getProperty "ca.cert")
-INSTALL_TYPE=$(getProperty "install.type")
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
