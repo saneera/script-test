@@ -110,7 +110,7 @@ objects:
           plain: {}
           tls: {}
           external:
-            type: loadbalancer
+            type: nodeport
             authentication:
               type: oauth
               clientId: ${KAFKA_CLIENT_ID}
@@ -147,7 +147,8 @@ objects:
           initialDelaySeconds: ${{ZOOKEEPER_HEALTHCHECK_DELAY}}
           timeoutSeconds: ${{ZOOKEEPER_HEALTHCHECK_TIMEOUT}}
         storage:
-          type: ephemeral
+          type: persistent-claim
+          size: ${ZOOKEEPER_VOLUME_CAPACITY}
       entityOperator:
         topicOperator: {}
         userOperator: {}
