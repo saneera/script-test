@@ -43,9 +43,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 oc project $NAMESPACE 2> /dev/null || oc new-project $NAMESPACE
 
 export HISTCONTROL=ignorespace
-echo $KAFKA_CLIENT_ID
-echo $KAFKA_CLIENT_SECRET
-echo $KAFKA_SECRET
+echo $INSTALL_TYPE
 kubectl create secret generic $KAFKA_SECRET -n $NAMESPACE --from-literal=secret=$KAFKA_CLIENT_SECRET
 kubectl create secret generic $CA_TRUST --from-file=./$INSTALL_TYPE/ca.crt $NAMESPACE
 
