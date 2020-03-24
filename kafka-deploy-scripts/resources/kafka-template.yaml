@@ -91,7 +91,7 @@ parameters:
   - description: CA Certificate
     displayName: CA Certificate
     name: CA_CERT
-    value: "ca.crt"
+    value: "adfsca.crt"
 
 objects:
   - apiVersion: kafka.strimzi.io/v1beta1
