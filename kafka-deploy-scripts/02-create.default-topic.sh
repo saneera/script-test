@@ -10,10 +10,12 @@ function getProperty {
 
 NAMESPACE=$(getProperty "namespace")
 CLUSTER=$(getProperty "cluster.name")
-TOPIC_NAME=$(getProperty "topic.name")
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
-eval "echo \"$(cat $DIR/kafka/kafka-topics.yaml)\""  | oc apply -f - -n $NAMESPACE
+cat $DIR/resources/kafka-topics.yaml \
+  | sed "s/cluster: .*/cluster: $CLUSTER/" \
+  | sed "s/namespace: .*/namespace: $NAMESPACE/" \
+  | kubectl apply -f - -n $NAMESPACE
 
 

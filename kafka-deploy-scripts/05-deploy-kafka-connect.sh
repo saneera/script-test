@@ -20,7 +20,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 # ensure to be on the right namespace
 oc project $NAMESPACE 2> /dev/null || oc new-project $NAMESPACE
 
-echo "Applying bridge resources"
+echo "Applying kafka connect resources"
 
 cat $DIR/resources/kafka-connect.yaml \
   | sed "s/name: .*/name: $CLUSTER_NAME/" \

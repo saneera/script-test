@@ -10,12 +10,10 @@ function getProperty {
 
 NAMESPACE=$(getProperty "namespace")
 CLUSTER=$(getProperty "cluster.name")
-TOPIC_NAME=$(getProperty "topic.name")
 DEFAULT_USER=$(getProperty "default.user")
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
-# create Kafka topics
-eval "echo \"$(cat $DIR/kafka/kafka-user.yaml)\""  | oc apply -f - -n $NAMESPACE
+kubectl apply -f $DIR/resources/kafka-user.yaml -n $NAMESPACE
 
 

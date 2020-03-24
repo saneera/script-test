@@ -1,6 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
 set +x
 
 PROPERTY_FILE=config.properties

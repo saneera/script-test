@@ -1,9 +1,7 @@
 apiVersion: kafka.strimzi.io/v1beta1
 kind: KafkaUser
 metadata:
-  name: $DEFAULT_USER
-  labels:
-    strimzi.io/cluster: $CLUSTER
+  name: my-user
 spec:
   authentication:
     type: tls
@@ -12,13 +10,13 @@ spec:
     acls:
       - resource:
           type: topic
-          name: $TOPIC_NAME
+          name: test-topic
           patternType: literal
         operation: Read
         host: "*"
       - resource:
           type: topic
-          name: $TOPIC_NAME
+          name: test-topic
           patternType: literal
         operation: Describe
         host: "*"
@@ -30,19 +28,19 @@ spec:
         host: "*"
       - resource:
           type: topic
-          name: $TOPIC_NAME
+          name: test-topic
           patternType: literal
         operation: Write
         host: "*"
       - resource:
           type: topic
-          name: $TOPIC_NAME
+          name: test-topic
           patternType: literal
         operation: Create
         host: "*"
       - resource:
           type: topic
-          name: $TOPIC_NAME
+          name: test-topic
           patternType: literal
         operation: Describe
         host: "*"
