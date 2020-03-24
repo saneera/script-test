@@ -14,6 +14,7 @@ TOPIC_NAME=$(getProperty "topic.name")
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
-eval "echo \"$(cat $DIR/kafka/kafka-topics.yaml)\""  | oc apply -f - -n $NAMESPACE
-
+# create Kafka topics
+eval "echo \"$(cat $DIR/kafka/kafka-user.yaml)\""  | oc apply -f - -n $NAMESPACE
+rm $DIR/kafka/$CLUSTER-kafka-topics.yaml
 
