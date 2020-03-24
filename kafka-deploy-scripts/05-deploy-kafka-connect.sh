@@ -1,6 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
 set +x
 
 PROPERTY_FILE=config.properties
@@ -25,7 +24,7 @@ echo "Applying bridge resources"
 
 cat $DIR/resources/kafka-connect.yaml \
   | sed "s/name: .*/name: $CLUSTERNAME/" \
-  | sed "s/name: .*/secretName: $SECRET_NAME/" \
+  | sed "s/secretName: .*/secretName: $SECRET_NAME/" \
   | sed "s/bootstrapServers: .*/bootstrapServers: $BOOTSTRAP_SERVER/" \
   | kubectl apply -f - -n $NAMESPACE
 
