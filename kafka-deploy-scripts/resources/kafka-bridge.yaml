@@ -1,10 +1,10 @@
 apiVersion: kafka.strimzi.io/v1alpha1
 kind: KafkaBridge
 metadata:
-  name: $BRIDGERNAME
+  name: my-bridge
 spec:
   replicas: 1
-  bootstrapServers: $BOOTSTRAP
+  bootstrapServers: my-cluster-kafka-bootstrap:9092
   http:
     port: 8080
  
