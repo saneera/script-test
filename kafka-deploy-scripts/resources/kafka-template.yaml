@@ -118,7 +118,7 @@ objects:
                 key: secret
                 secretName: ${KAFKA_SECRET}
               validIssuerUri: ${VALID_ISSUER_URL}
-              jwksEndpointUri: {JWKS_ENDPOINT}
+              jwksEndpointUri: ${JWKS_ENDPOINT}
               userNameClaim: preferred_username
               disableTlsHostnameVerification: true
               tlsTrustedCertificates:
