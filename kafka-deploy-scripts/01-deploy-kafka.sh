@@ -44,10 +44,10 @@ oc project $NAMESPACE 2> /dev/null || oc new-project $NAMESPACE
 
 export HISTCONTROL=ignorespace
 echo $KAFKA_CLIENT_ID
-echo KAFKA_CLIENT_SECRET
+echo $KAFKA_CLIENT_SECRET
 echo $KAFKA_SECRET
 kubectl create secret generic $KAFKA_SECRET -n $NAMESPACE --from-literal=secret=$KAFKA_CLIENT_SECRET
-kubectl create secret generic $CA_TRUST --from-file=../$INSTALL_TYPE/ca.crt $NAMESPACE
+kubectl create secret generic $CA_TRUST --from-file=./$INSTALL_TYPE/ca.crt $NAMESPACE
 
 echo "Creating template in openshift for specific project to install kafka cluster - Start"
 oc create -f $DIR/resources/kafka-template.yaml -n $NAMESPACE
