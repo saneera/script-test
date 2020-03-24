@@ -12,7 +12,7 @@ function getProperty {
 }
 
 NAMESPACE=$(getProperty "namespace")
-CLUSTERNAME=$(getProperty "cluster.name")
+export CLUSTERNAME=$(getProperty "cluster.name")
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
