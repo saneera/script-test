@@ -12,7 +12,9 @@ function getProperty {
 }
 
 NAMESPACE=$(getProperty "namespace")
-export CLUSTERNAME=$(getProperty "cluster.name")
+CLUSTERNAME=$(getProperty "cluster.name")
+BRIDGETNAME="${CLUSTERNAME}-bridge"
+BOOTSTRAP="${CLUSTERNAME}-kafka-bootstrap:9092"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
