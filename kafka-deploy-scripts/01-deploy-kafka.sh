@@ -86,7 +86,7 @@ echo "...Zookeeper cluster ready"
 # delay for allowing cluster operator to create the Kafka statefulset
 sleep 5
 
-kReplicas=$(oc get kafka $CLUSTER_NAME -o jsonpath="{.spec.kafka.replicas}" -n $NAMESPACE)
+kReplicas=$()
 echo "Waiting for Kafka cluster to be ready..."
 readyReplicas="0"
 while [ "$readyReplicas" != "$kReplicas" ]

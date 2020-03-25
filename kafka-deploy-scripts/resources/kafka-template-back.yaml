@@ -131,7 +131,8 @@ objects:
           initialDelaySeconds: ${{KAFKA_HEALTHCHECK_DELAY}}
           timeoutSeconds: ${{KAFKA_HEALTHCHECK_TIMEOUT}}
         storage:
-          type: ephemeral
+          type: persistent-claim
+          size: ${KAFKA_VOLUME_CAPACITY}
         config:
           default.replication.factor: ${KAFKA_DEFAULT_REPLICATION_FACTOR}
           offsets.topic.replication.factor: ${KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR}
@@ -146,7 +147,8 @@ objects:
           initialDelaySeconds: ${{ZOOKEEPER_HEALTHCHECK_DELAY}}
           timeoutSeconds: ${{ZOOKEEPER_HEALTHCHECK_TIMEOUT}}
         storage:
-          type: ephemeral
+          type: persistent-claim
+          size: ${ZOOKEEPER_VOLUME_CAPACITY}
       entityOperator:
         topicOperator: {}
         userOperator: {}
